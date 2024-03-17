@@ -1,7 +1,7 @@
 <script>
-	import Navbar from '../components/Navbar/Navbar.svelte';
+	import Navbar from '$lib/components/Navbar/Navbar.svelte';
+	import Footer from '$lib/components/Footer/Footer.svelte';
 	import '../app.css';
-	import Footer from '../components/Footer/Footer.svelte';
 </script>
 
 <div class="flex flex-col min-h-screen font-display">

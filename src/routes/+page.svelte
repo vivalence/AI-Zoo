@@ -1,4 +1,7 @@
+<script>
+	import PriceCalculator from '$lib/components/PriceCalculator/PriceCalculator.svelte';
+</script>
+
 <main class="flex-grow container mx-auto">
-	<h1>Welcome to SvelteKit</h1>
-	<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+	<PriceCalculator />
 </main>
