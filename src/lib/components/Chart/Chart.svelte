@@ -1,8 +1,18 @@
-<script>
+<script lang="ts">
 	import Chart from 'chart.js/auto';
-	import { Bar } from 'svelte-chartjs';
+	import { Bar, Scatter } from 'svelte-chartjs';
 
-	const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+	let activeChart = 'bar';
+
+	const labels = [
+		'Dataset 1',
+		'Dataset 2',
+		'Dataset 3',
+		'Dataset 4',
+		'Dataset 5',
+		'Dataset 6',
+		'Dataset 7'
+	];
 	const data = {
 		labels: labels,
 		datasets: [
@@ -29,12 +39,67 @@
 					'rgb(153, 102, 255)',
 					'rgb(201, 203, 207)'
 				],
-				borderWidth: 1
+				borderWidth: 2
 			}
 		]
 	};
+
+	const options = {
+		maintainAspectRatio: false,
+		indexAxis: 'y',
+		plugins: {
+			legend: {
+				labels: {
+					color: '#fff'
+				}
+			}
+		},
+		scales: {
+			x: {
+				grid: {
+					color: 'rgba(255, 255, 255, 0.1)'
+				},
+				ticks: {
+					color: '#fff'
+				}
+			},
+			y: {
+				grid: {
+					color: 'rgba(255, 255, 255, 0.1)'
+				},
+				ticks: {
+					color: '#fff'
+				}
+			}
+		}
+	};
+
+	function toggleChart(chartType: string) {
+		activeChart = chartType;
+	}
 </script>
 
-<div>
-	<Bar {data} width={500} height={100} options={{ maintainAspectRatio: false, indexAxis: 'y' }} />
+<div class="relative">
+	<div class="absolute top-4 left-5">
+		<button
+			on:click={() => toggleChart('bar')}
+			class:bg-blue-500={activeChart === 'bar'}
+			class:text-white={activeChart === 'bar'}
+			class="px-4 py-1 rounded">Bar Chart</button
+		>
+		<button
+			on:click={() => toggleChart('scatter')}
+			class:bg-blue-500={activeChart === 'scatter'}
+			class:text-white={activeChart === 'scatter'}
+			class="px-4 py-1 rounded">Scatter Chart</button
+		>
+	</div>
+
+	<div class="card p-3 pt-8 h-[400px] flex flex-col">
+		{#if activeChart === 'bar'}
+			<Bar {data} {options} width={900} height={100} />
+		{:else if activeChart === 'scatter'}
+			<Scatter {data} {options} width={900} height={100} />
+		{/if}
+	</div>
 </div>
