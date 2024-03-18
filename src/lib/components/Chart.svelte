@@ -3,6 +3,7 @@
 	import { Bar, Scatter } from 'svelte-chartjs';
 
 	let activeChart = 'bar';
+	let chartTypes = ['bar', 'scatter'];
 
 	const labels = [
 		'Dataset 1',
@@ -46,7 +47,7 @@
 
 	const options = {
 		maintainAspectRatio: false,
-		indexAxis: 'y',
+		indexAxis: 'y' as const,
 		plugins: {
 			legend: {
 				labels: {
@@ -81,18 +82,20 @@
 
 <div class="relative">
 	<div class="absolute top-4 left-5">
-		<button
-			on:click={() => toggleChart('bar')}
-			class:bg-blue-500={activeChart === 'bar'}
-			class:text-white={activeChart === 'bar'}
-			class="px-4 py-1 rounded">Bar Chart</button
-		>
-		<button
-			on:click={() => toggleChart('scatter')}
-			class:bg-blue-500={activeChart === 'scatter'}
-			class:text-white={activeChart === 'scatter'}
-			class="px-4 py-1 rounded">Scatter Chart</button
-		>
+		{#each chartTypes as chartType}
+			<button
+				on:click={() => toggleChart(chartType)}
+				class:bg-blue-500={activeChart === chartType}
+				class:text-white={activeChart === chartType}
+				class="px-4 py-1 rounded"
+			>
+				{#if chartType === 'bar'}
+					Bar Chart
+				{:else}
+					Scatter Chart
+				{/if}
+			</button>
+		{/each}
 	</div>
 
 	<div class="card p-3 pt-8 h-[400px] flex flex-col">

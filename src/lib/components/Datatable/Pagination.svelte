@@ -6,7 +6,6 @@
 	const pages = handler.getPages({ ellipsis: true });
 </script>
 
-<!-- Desktop buttons -->
 <section class="btn-group variant-ghost-surface [&>*+*]:border-surface-500 h-10 hidden lg:block">
 	<button
 		type="button"
@@ -37,7 +36,6 @@
 	</button>
 </section>
 
-<!-- Mobile buttons -->
 <section class="lg:hidden">
 	<button
 		type="button"

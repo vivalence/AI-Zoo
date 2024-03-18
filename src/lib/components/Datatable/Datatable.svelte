@@ -36,7 +36,7 @@
 			{/each}
 		</tbody>
 	</table>
-	<!-- Footer -->
+
 	<footer class="flex justify-between">
 		<RowCount {handler} />
 		<Pagination {handler} />
