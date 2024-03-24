@@ -1,13 +1,16 @@
 <script>
 	import Chart from '$lib/components/Chart.svelte';
-	import Datatable from '$lib/components/Datatable/Datatable.svelte';
 	import PriceCalculator from '$lib/components/PriceCalculator.svelte';
+	import DataTable from '$lib/components/Datatable/data-table.svelte';
 </script>
 
 <main class="flex-grow container mx-auto">
 	<div class="flex flex-col items-center mt-8">
 		<h1 class="h1">Dataset Calculator</h1>
-		<p class="h4 mt-4">A straightforward and contributor-driven platform for comparison of AI models and their suppliers.</p>
+		<p class="h4 mt-4">
+			A straightforward and contributor-driven platform for comparison of AI models and their
+			suppliers.
+		</p>
 	</div>
 
 	<div class="flex justify-center mt-12 mb-12 gap-x-8">
@@ -19,6 +22,6 @@
 	</div>
 
 	<div class="mb-12">
-		<Datatable />
+		<DataTable />
 	</div>
 </main>
