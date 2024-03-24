@@ -7,7 +7,7 @@
 <main class="flex-grow container mx-auto">
 	<div class="flex flex-col items-center mt-8">
 		<h1 class="h1">Dataset Calculator</h1>
-		<p class="h4 mt-4">Calculate the cost of using different datasets</p>
+		<p class="h4 mt-4">A straightforward and contributor-driven platform for comparison of AI models and their suppliers.</p>
 	</div>
 
 	<div class="flex justify-center mt-12 mb-12 gap-x-8">

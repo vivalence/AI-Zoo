@@ -1,26 +1,22 @@
 <script lang="ts">
 	import Chart from 'chart.js/auto';
 	import { Bar, Scatter } from 'svelte-chartjs';
+	import { dummy } from '../../../data/suppliers/Dummy/dummy';
 
 	let activeChart = 'bar';
 	let chartTypes = ['bar', 'scatter'];
 
-	const labels = [
-		'Dataset 1',
-		'Dataset 2',
-		'Dataset 3',
-		'Dataset 4',
-		'Dataset 5',
-		'Dataset 6',
-		'Dataset 7'
-	];
+	dummy.sort((a, b) => a.cost.per_million_tokens_blend_3_1 - b.cost.per_million_tokens_blend_3_1);
+	const labels = dummy.map((model) => model.model);
+	const dataDummy = dummy.map((model) => model.cost.per_million_tokens_blend_3_1);
+
 	const data = {
 		labels: labels,
 		datasets: [
 			{
 				axis: 'y',
-				label: 'My First Dataset',
-				data: [65, 59, 80, 81, 56, 55, 40],
+				label: 'Blended Price',
+				data: dataDummy,
 				fill: true,
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
@@ -47,7 +43,7 @@
 
 	const options = {
 		maintainAspectRatio: false,
-		indexAxis: 'y' as const,
+		indexAxis: 'x' as const,
 		plugins: {
 			legend: {
 				labels: {
