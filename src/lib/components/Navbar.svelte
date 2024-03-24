@@ -3,7 +3,7 @@
 	import Github from 'lucide-svelte/icons/github';
 </script>
 
-<nav class=" p-4">
+<nav class="p-4 border-b border-gray-800">
 	<div class="container mx-auto flex items-center justify-between">
 		<div class="flex items-center gap-x-20">
 			<a href="/" class="text-white text-2xl font-bold">AI Zoo</a>

@@ -15,12 +15,14 @@
 		</p>
 	</div>
 
-	<div class="flex justify-center mt-12 mb-12 gap-x-8">
-		<div class="w-full">
+	<div class="flex flex-col md:flex-row justify-center mt-12 mb-12 gap-x-8">
+		<div class="w-full md:w-1/2">
 			<PriceCalculator />
 		</div>
 
-		<Chart />
+		<div class="w-full md:w-1/2">
+			<Chart />
+		</div>
 	</div>
 
 	<div class="mb-12">

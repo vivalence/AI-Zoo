@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createTable, Render, Subscribe } from 'svelte-headless-table';
+	import { createTable, Render, Subscribe, createRender } from 'svelte-headless-table';
 	import {
 		addPagination,
 		addSortBy,
@@ -11,16 +11,40 @@
 	import { readable } from 'svelte/store';
 	import { dummy } from '../../../../data/suppliers/Dummy/dummy';
 	import { Button } from '$lib/components/ui/button';
+	import DataTableActions from './data-table-actions.svelte';
+	import DataTableCheckbox from './data-table-checkbox.svelte';
 
 	const table = createTable(readable(dummy), {
 		page: addPagination(),
 		sort: addSortBy(),
-		hide: addHiddenColumns()
+		select: addSelectedRows()
 	});
 
 	const columns = table.createColumns([
 		table.column({
-			accessor: 'model',
+			header: (_, { pluginStates }) => {
+				const { allPageRowsSelected } = pluginStates.select;
+				return createRender(DataTableCheckbox, {
+					checked: allPageRowsSelected
+				});
+			},
+			accessor: 'id',
+			cell: ({ row }, { pluginStates }) => {
+				const { getRowState } = pluginStates.select;
+				const { isSelected } = getRowState(row);
+
+				return createRender(DataTableCheckbox, {
+					checked: isSelected
+				});
+			},
+			plugins: {
+				sort: {
+					disable: true
+				}
+			}
+		}),
+		table.column({
+			accessor: (row) => row.model,
 			header: 'Supplier Name'
 		}),
 		table.column({
@@ -74,7 +98,10 @@
 		}),
 		table.column({
 			accessor: (row) => row.source,
-			header: 'Link to Source'
+			header: 'Link to Source',
+			cell: ({ value }) => {
+				return createRender(DataTableActions, { url: value });
+			}
 		})
 	]);
 
