@@ -14,12 +14,12 @@
 				<h3 class="text-white">Connect with Us</h3>
 				<ul class="flex gap-4">
 					<li>
-						<a href="https://twitter.com/FinnFrotscher" class="text-white"
+						<a href="https://twitter.com/FinnFrotscher" target="_blank" class="text-white"
 							><Twitter color="#fff" size="24" /></a
 						>
 					</li>
 					<li>
-						<a href="https://github.com/lazerjesus" class="text-white"
+						<a href="https://github.com/lazerjesus" target="_blank" class="text-white"
 							><Github color="#fff" size="24" /></a
 						>
 					</li>

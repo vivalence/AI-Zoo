@@ -15,7 +15,7 @@
 		</p>
 	</div>
 
-	<div class="flex flex-col md:flex-row justify-center mt-12 mb-12 gap-x-8">
+	<div class="flex flex-col md:flex-row justify-center items-center mt-12 mb-12 gap-x-8">
 		<div class="w-full md:w-1/2">
 			<PriceCalculator />
 		</div>

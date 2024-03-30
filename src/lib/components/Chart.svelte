@@ -77,7 +77,7 @@
 </script>
 
 <div class="relative">
-	<div class="absolute top-4 left-5">
+	<div>
 		{#each chartTypes as chartType}
 			<button
 				on:click={() => toggleChart(chartType)}
