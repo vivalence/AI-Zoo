@@ -13,6 +13,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import DataTableActions from './data-table-actions.svelte';
 	import DataTableCheckbox from './data-table-checkbox.svelte';
+	import { onMount } from 'svelte';
 
 	const table = createTable(readable(dummy), {
 		page: addPagination(),
@@ -109,6 +110,9 @@
 		table.createViewModel(columns);
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
+
+	const { selectedDataIds } = pluginStates.select;
+	$: console.log($selectedDataIds);
 </script>
 
 <div>

@@ -1,5 +1,5 @@
 <script>
-	import Chart from '$lib/components/Chart.svelte';
+	import Chart from '$lib/components/Chart/Chart.svelte';
 	import PriceCalculator from '$lib/components/PriceCalculator.svelte';
 	import DataTable from '$lib/components/Datatable/data-table.svelte';
 </script>

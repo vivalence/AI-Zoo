@@ -8,11 +8,7 @@
 </script>
 
 <Card.Root class="w-[400px]">
-	<Card.Header>
-		<Card.Title>Create project</Card.Title>
-		<Card.Description>Deploy your new project in one-click.</Card.Description>
-	</Card.Header>
-	<Card.Content>
+	<Card.Content class="py-16">
 		<form>
 			<div class="flex flex-col gap-y-5">
 				<div class="flex flex-col gap-y-3">
