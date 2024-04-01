@@ -13,7 +13,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import DataTableActions from './data-table-actions.svelte';
 	import DataTableCheckbox from './data-table-checkbox.svelte';
-	import { onMount } from 'svelte';
+	import { selectedIds } from '$lib/stores/selectedIds';
 
 	const table = createTable(readable(dummy), {
 		page: addPagination(),
@@ -29,7 +29,7 @@
 					checked: allPageRowsSelected
 				});
 			},
-			accessor: 'id',
+			accessor: (row) => row.id,
 			cell: ({ row }, { pluginStates }) => {
 				const { getRowState } = pluginStates.select;
 				const { isSelected } = getRowState(row);
@@ -106,13 +106,27 @@
 		})
 	]);
 
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
+	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates, rows } =
 		table.createViewModel(columns);
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 
 	const { selectedDataIds } = pluginStates.select;
-	$: console.log($selectedDataIds);
+
+	let selectedId: (string | undefined)[];
+
+	$: {
+		// The lib returns the id by the index of the row in the table, this is why we need to convert it to the real id
+		selectedId = Object.entries($selectedDataIds)
+			.filter(([id, isSelected]) => isSelected && $rows[Number(id)])
+			.map(([id]) => {
+				const row = $rows[Number(id)];
+				if (!row.isData()) return;
+				return row.original.id;
+			});
+
+		selectedIds.set(selectedId);
+	}
 </script>
 
 <div>
