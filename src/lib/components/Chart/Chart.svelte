@@ -8,12 +8,17 @@
 	let activeChart = 'bar';
 	let chartTypes = ['bar', 'scatter'];
 
-	let dataBar = {};
-	let dataScatter = {};
+	let dataBar = {
+		labels: [] as any[],
+		datasets: [] as any[]
+	};
+	let dataScatter = {
+		datasets: [] as any[]
+	};
 
 	selectedIds.subscribe((value) => {
 		const selectedIds = value;
-		const filteredData = dummy.filter((model) => selectedIds.includes(model.id.toString()));
+		const filteredData = dummy.filter((model) => selectedIds.includes(model.id));
 
 		const dataToSort = filteredData.length === 0 ? dummy : filteredData;
 
