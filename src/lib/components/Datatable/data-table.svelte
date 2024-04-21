@@ -9,11 +9,12 @@
 	import * as Table from '$lib/components/ui/table';
 	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
 	import { readable } from 'svelte/store';
-	import { dummy } from '../../../../data/suppliers/Dummy/dummy';
 	import { Button } from '$lib/components/ui/button';
 	import DataTableActions from './data-table-actions.svelte';
 	import DataTableCheckbox from './data-table-checkbox.svelte';
+
 	import { selectedIds } from '$lib/stores/selectedIds';
+	import { dummy } from '$data/suppliers/Dummy/dummy';
 
 	const table = createTable(readable(dummy), {
 		page: addPagination(),
@@ -46,11 +47,11 @@
 		}),
 		table.column({
 			accessor: (row) => row.model,
-			header: 'Supplier Name'
+			header: 'Supplier'
 		}),
 		table.column({
 			accessor: (row) => row.model,
-			header: 'Model Name'
+			header: 'Model'
 		}),
 		table.column({
 			accessor: (row) => row.technical.token_window,
@@ -80,8 +81,8 @@
 			}
 		}),
 		table.column({
-			accessor: (row) => row.speed.tokens_per_second,
-			header: 'Speed (tokens per second)',
+			accessor: (row) => row.speed.latency_first_token_ms,
+			header: 'Latency to first token',
 			plugins: {
 				sort: {
 					disable: true
@@ -89,8 +90,8 @@
 			}
 		}),
 		table.column({
-			accessor: (row) => row.speed.latency_first_token_ms,
-			header: 'Latency to first token',
+			accessor: (row) => row.speed.tokens_per_second,
+			header: 'Speed (tokens per second)',
 			plugins: {
 				sort: {
 					disable: true

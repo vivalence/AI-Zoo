@@ -4,18 +4,26 @@
 	import DataTable from '$lib/components/Datatable/data-table.svelte';
 </script>
 
-<main class="flex-grow container mx-auto">
-	<div class="flex flex-col items-center mt-8">
-		<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-			Dataset Calculator
-		</h1>
+<svelte:head>
+	<title>AI Zoo: Suppliers and Pricing</title>
+	<meta name="description" content="" />
+</svelte:head>
+
+<main class="flex-grow container mx-auto pt-10">
+	<div class="flex flex-col items-center mb-16">
+		<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">🦓 AI Zoo 🦚</h1>
 		<p class="leading-7 [&:not(:first-child)]:mt-6">
 			A straightforward and contributor-driven platform for comparison of AI models and their
 			suppliers.
 		</p>
 	</div>
 
-	<div class="flex flex-col md:flex-row justify-center items-center mt-12 mb-12 gap-x-8">
+	<!-- <hr class="mb-12" /> -->
+
+	<div class="w-full">
+		<h1 class="scroll-m-20 text-xl font-bold tracking-tight lg:text-2xl">Suppliers and Pricing:</h1>
+	</div>
+	<div class="flex flex-col md:flex-row justify-center items-center mb-12 gap-x-8">
 		<div class="w-full md:w-1/2">
 			<PriceCalculator />
 		</div>

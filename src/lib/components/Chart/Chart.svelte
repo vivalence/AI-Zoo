@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Chart from 'chart.js/auto';
 	import { Bar, Scatter } from 'svelte-chartjs';
-	import { dummy } from '../../../../data/suppliers/Dummy/dummy';
 	import { selectedIds } from '$lib/stores/selectedIds';
 	import { optionsBar, optionsScatter } from './chartOptions';
+
+	import { dummy } from '$data/suppliers/Dummy/dummy';
 
 	let activeChart = 'bar';
 	let chartTypes = ['bar', 'scatter'];
@@ -93,9 +94,9 @@
 					class="px-4 py-1 rounded"
 				>
 					{#if chartType === 'bar'}
-						Bar Chart
+						Price per Token
 					{:else}
-						Scatter Chart
+					  Price * Tokens per Second
 					{/if}
 				</button>
 			{/each}
