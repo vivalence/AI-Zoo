@@ -2,6 +2,16 @@
 
 LLM & AI Model Compare is a contributor-driven platform for comparing language models and AI technologies across various suppliers. Built with Svelte, it provides an interactive way to explore and understand the differences in cost, speed, and quality of AI models.
 
+## Suppliers
+- [x] OpenAI: [docs](https://platform.openai.com/docs/overview)
+- [ ] Google: [docs](https://cloud.google.com/products/ai)
+- [ ] Anthropic: [docs](https://www.anthropic.com/)
+- [ ] Cohere: [docs](https://docs.cohere.ai/)
+- [ ] Microsoft: [docs](https://docs.microsoft.com/en-us/azure/cognitive-services/)
+- [ ] Anyscale: [docs](https://docs.anyscale.com/)
+- [ ] Groq: [docs](https://groq.com/product/)
+- [ ] Mistral: [docs](https://docs.mistral.ai/)
+
 ## Project Structure
 
 - **`/data`**: Contains supplier directories and model details.

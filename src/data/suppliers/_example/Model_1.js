@@ -1,6 +1,7 @@
 const model = {
 	id: 'Model_1',
 	model: 'Model_1',
+	supplier: 'Supplier_1',
 	source: 'https://URL',
 	cost: {
 		currency: 'USD',
