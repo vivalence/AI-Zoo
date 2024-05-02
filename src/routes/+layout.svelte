@@ -1,6 +1,7 @@
 <script>
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import { ModeWatcher } from "mode-watcher";
 	import '../app.css';
 </script>
 
@@ -23,7 +24,9 @@
 </svelte:head>
 
 <div class="flex flex-col min-h-screen font-display">
+    
 	<Navbar />
+    <ModeWatcher />
 	<slot />
 	<Footer />
 </div>
