@@ -8,8 +8,8 @@
 
 	let price = 0;
 	let model = null;
-	let inputTokens = 0;
-	let outputTokens = 0;
+	let inputTokens 
+	let outputTokens
 	let calculatorState;
 
 	selectedRow.subscribe(value => {
@@ -42,11 +42,11 @@
 			<div class="flex flex-col gap-y-5">
 				<div class="flex flex-col gap-y-3">
 					<Label for="input-tokens">Input Tokens:</Label>
-					<Input type="number" id="input-tokens" bind:value={inputTokens} placeholder="Number of Input Tokens" />
+					<Input type="number" id="input-tokens" bind:value={inputTokens} placeholder="Number of Input Tokens" disabled={!model} />
 				</div>
 				<div class="flex flex-col gap-y-3">
 					<Label for="output-tokens">Output Tokens:</Label>
-					<Input type="number" id="output-tokens" bind:value={outputTokens} placeholder="Number of Output Tokens" />
+					<Input type="number" id="output-tokens" bind:value={outputTokens} placeholder="Number of Output Tokens" disabled={!model} />
 				</div>
 				<div>
 					<Button disabled={!model} on:click={calculateTotalCost}>Calculate Price</Button>
