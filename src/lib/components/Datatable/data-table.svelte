@@ -17,7 +17,6 @@
 	import { suppliers } from '$data/suppliers/getAllObjects';
 
 
-	console.log(suppliers)
 	const table = createTable(readable(suppliers), {
 		page: addPagination(),
 		sort: addSortBy(),
@@ -152,7 +151,7 @@
 										{#if cell.id === 'model'}
 											<Button variant="ghost" on:click={props.sort.toggle}>
 												<Render of={cell.render()} />
-												<ArrowUpDown class={'ml-2 h-4 w-4'} />
+											<ArrowUpDown class={'ml-2 h-4 w-4'} />
 											</Button>
 										{:else}
 											<Render of={cell.render()} />
