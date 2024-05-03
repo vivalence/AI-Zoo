@@ -29,4 +29,4 @@ claude3Haiku.cost['per_million_tokens_blend_3_1'] =
 		claude3Haiku.cost['per_million_tokens_output']) /
 	4;
 
-export default async () => claude3Haiku;
+export default () => claude3Haiku;

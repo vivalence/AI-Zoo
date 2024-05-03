@@ -28,4 +28,4 @@ mistral8x22B.cost['per_million_tokens_blend_3_1'] =
 		mistral8x22B.cost['per_million_tokens_output']) /
 	4;
 
-export default async () => mistral8x22B;
+export default () => mistral8x22B;

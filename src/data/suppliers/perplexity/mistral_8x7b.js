@@ -27,4 +27,4 @@ mistral8x7B_perplexity.cost['per_million_tokens_blend_3_1'] =
 		mistral8x7B_perplexity.cost['per_million_tokens_output']) /
 	4;
 
-export default async () => mistral8x7B_perplexity;
+export default () => mistral8x7B_perplexity;

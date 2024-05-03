@@ -28,4 +28,4 @@ mixtral8x7B.cost['per_million_tokens_blend_3_1'] =
 		mixtral8x7B.cost['per_million_tokens_output']) /
 	4;
 
-export default async () => mixtral8x7B;
+export default () => mixtral8x7B;

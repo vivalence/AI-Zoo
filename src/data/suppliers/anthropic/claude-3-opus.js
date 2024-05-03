@@ -29,4 +29,4 @@ claude3Opus.cost['per_million_tokens_blend_3_1'] =
 		claude3Opus.cost['per_million_tokens_output']) /
 	4;
 
-export default async () => claude3Opus;
+export default () => claude3Opus;

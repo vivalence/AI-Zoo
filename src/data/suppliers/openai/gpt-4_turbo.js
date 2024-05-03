@@ -26,4 +26,4 @@ gpt4Turbo.cost['per_million_tokens_blend_3_1'] =
 	(gpt4Turbo.cost['per_million_tokens_input'] * 3 + gpt4Turbo.cost['per_million_tokens_output']) /
 	4;
 
-export default async () => gpt4Turbo;
+export default () => gpt4Turbo;

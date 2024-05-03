@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Chart from 'chart.js/auto';
 	import { Bar, Scatter } from 'svelte-chartjs';
-	import { selectedIds } from '$lib/stores/selectedIds';
+	import { selectedIds } from '$lib/stores/datatable';
 	import { optionsBar, optionsScatter } from './chartOptions';
 
-	import { dummy } from '$data/suppliers/Dummy/dummy';
+	import { suppliers } from '$data/suppliers/getAllObjects';
 
 	let activeChart = 'bar';
 	let chartTypes = ['bar', 'scatter'];
@@ -19,16 +19,18 @@
 
 	selectedIds.subscribe((value) => {
 		const selectedIds = value;
-		const filteredData = dummy.filter((model) => selectedIds.includes(model.id));
+		const filteredData = suppliers.filter((model) => selectedIds.includes(model.id));
 
-		const dataToSort = filteredData.length === 0 ? dummy : filteredData;
+		const dataToSort = filteredData.length === 0 ? suppliers : filteredData;
+
+		console.log(dataToSort)
 
 		const sortedData = [...dataToSort].sort(
 			(a, b) =>
 				parseFloat(a.cost.per_million_tokens_blend_3_1) -
 				parseFloat(b.cost.per_million_tokens_blend_3_1)
 		);
-		const labels = sortedData.map((model) => model.model);
+		const labels = sortedData.map((model) => model.name);
 		const dataDummy = sortedData.map((model) =>
 			parseFloat(model.cost.per_million_tokens_blend_3_1)
 		);

@@ -3,19 +3,27 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import { selectedRow } from '$lib/stores/datatable';
 
-	let model = null; // this should come from the active-model store
+	let model = null;
 
 	let price = 0;
+
+	$: {
+		selectedRow.subscribe((value) => {
+			if (!value) return;
+			model = value;
+		});
+	}
 </script>
 
 <Card.Root class="w-[400px] py-2">
 	<Card.Header class="">
 		<Card.Title>Cost Calculator:</Card.Title>
-		{#if model}
+		{#if model.name}
 			Model: {model.name}
 		{:else}
-		          <span class="text-xs text-gray-500 italic">Select a Model below</span>
+			<span class="text-xs text-gray-500 italic">Select a Model below</span>
 		{/if}
 	</Card.Header>
 	<Card.Content class="">

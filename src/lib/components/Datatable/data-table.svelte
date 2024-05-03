@@ -13,14 +13,23 @@
 	import DataTableActions from './data-table-actions.svelte';
 	import DataTableCheckbox from './data-table-checkbox.svelte';
 
-	import { selectedIds } from '$lib/stores/selectedIds';
-	import { dummy } from '$data/suppliers/Dummy/dummy';
+	import { selectedIds, selectedRow } from '$lib/stores/datatable';
+	import { suppliers } from '$data/suppliers/getAllObjects';
 
-	const table = createTable(readable(dummy), {
+
+	console.log(suppliers)
+	const table = createTable(readable(suppliers), {
 		page: addPagination(),
 		sort: addSortBy(),
 		select: addSelectedRows()
 	});
+
+	let selectedRowId: string | undefined;
+
+	const handleRowClick = (row: any) => {
+		selectedRow.set(row);
+		selectedRowId = row.id
+	};
 
 	const columns = table.createColumns([
 		table.column({
@@ -30,7 +39,7 @@
 					checked: allPageRowsSelected
 				});
 			},
-			accessor: (row) => row.id,
+			accessor: (row) => row.supplier.id,
 			cell: ({ row }, { pluginStates }) => {
 				const { getRowState } = pluginStates.select;
 				const { isSelected } = getRowState(row);
@@ -46,11 +55,11 @@
 			}
 		}),
 		table.column({
-			accessor: (row) => row.model,
+			accessor: (row) => row.supplier.id,
 			header: 'Supplier'
 		}),
 		table.column({
-			accessor: (row) => row.model,
+			accessor: (row) => row.name,
 			header: 'Model'
 		}),
 		table.column({
@@ -63,7 +72,7 @@
 			}
 		}),
 		table.column({
-			accessor: (row) => row.cost.per_million_tokens_input,
+			accessor: (row) => `$${row.cost.per_million_tokens_input}`,
 			header: 'Cost Input',
 			plugins: {
 				sort: {
@@ -72,7 +81,7 @@
 			}
 		}),
 		table.column({
-			accessor: (row) => row.cost.per_million_tokens_output,
+			accessor: (row) => `$${row.cost.per_million_tokens_output}`,
 			header: 'Cost Output',
 			plugins: {
 				sort: {
@@ -81,7 +90,7 @@
 			}
 		}),
 		table.column({
-			accessor: (row) => row.speed.latency_first_token_ms,
+			accessor: (row) => `${row.speed.latency_first_token_ms}ms`,
 			header: 'Latency to first token',
 			plugins: {
 				sort: {
@@ -99,7 +108,7 @@
 			}
 		}),
 		table.column({
-			accessor: (row) => row.source,
+			accessor: (row) => row.supplier.docs,
 			header: 'Link to Source',
 			cell: ({ value }) => {
 				return createRender(DataTableActions, { url: value });
@@ -157,19 +166,19 @@
 			</Table.Header>
 			<Table.Body {...$tableBodyAttrs}>
 				{#each $pageRows as row (row.id)}
-					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-						<Table.Row {...rowAttrs}>
-							{#each row.cells as cell (cell.id)}
-								<Subscribe attrs={cell.attrs()} let:attrs>
-									<Table.Cell {...attrs}>
-										<Render of={cell.render()} />
-									</Table.Cell>
-								</Subscribe>
-							{/each}
-						</Table.Row>
-					</Subscribe>
+						<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+								<Table.Row {...rowAttrs} on:click={() => handleRowClick(row.original)}>
+												{#each row.cells as cell (cell.id)}
+														<Subscribe attrs={cell.attrs()} let:attrs>
+																<Table.Cell {...attrs}>
+																		<Render of={cell.render()} />
+																</Table.Cell>
+														</Subscribe>
+												{/each}
+								</Table.Row>
+						</Subscribe>
 				{/each}
-			</Table.Body>
+		</Table.Body>
 		</Table.Root>
 	</div>
 	<div class="flex items-center justify-end space-x-4 py-4">
@@ -187,3 +196,4 @@
 		>
 	</div>
 </div>
+

@@ -29,4 +29,4 @@ claude3Sonnet.cost['per_million_tokens_blend_3_1'] =
 		claude3Sonnet.cost['per_million_tokens_output']) /
 	4;
 
-export default async () => claude3Sonnet;
+export default () => claude3Sonnet;

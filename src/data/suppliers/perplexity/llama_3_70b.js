@@ -26,4 +26,4 @@ llama3_70B_perplexity.cost['per_million_tokens_blend_3_1'] =
 		llama3_70B_perplexity.cost['per_million_tokens_output']) /
 	4;
 
-export default async () => llama3_70B_perplexity;
+export default () => llama3_70B_perplexity;

@@ -26,4 +26,4 @@ gpt35Turbo.cost['per_million_tokens_blend_3_1'] =
 	(gpt35Turbo.cost['per_million_tokens_input'] * 3 + gpt35Turbo.cost['per_million_tokens_output']) /
 	4;
 
-export default async () => gpt35Turbo;
+export default () => gpt35Turbo;
