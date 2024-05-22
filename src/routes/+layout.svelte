@@ -2,7 +2,10 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import { ModeWatcher } from "mode-watcher";
+    import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
 	import '../app.css';
+
 </script>
 
 
@@ -15,7 +18,7 @@
     <meta property="og:title" content="AI Zoo | Open-Source LLM Comparison" />
     <meta property="og:description" content="Dive into detailed comparisons and analyses of large language models (LLMs) on AI Zoo. Discover the best LLM for your needs through open-source collaboration." />
     <meta property="og:url" content="https://vivalence.github.io/AI-Zoo/" />
-    <meta property="og:image" content="/assets/og-image.jpg" />
+    <meta property="og:image" content="https://vivalence.github.io/AI-Zoo/assets/og-image.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="AI Zoo | Open-Source LLM Comparison" />
     <meta name="twitter:description" content="Join AI Zoo to compare large language models (LLMs) on metrics like performance, cost, and speed. Contribute to or utilize our open-source data to make informed decisions." />
