@@ -8,7 +8,7 @@
 	import DataTableActions from './data-table-actions.svelte';
 	import DataTableCheckbox from './data-table-checkbox.svelte';
 
-	import { selectedModels, activeModel } from '../../store';
+	import { selectedModels, activeModel, resetActiveModel } from '../../store';
 	import { suppliers } from '../../store';
 
 	let lastClickedRowId: string | null = null;
@@ -20,8 +20,13 @@
 	});
 
 	const handleRowClick = (row: any) => {
-		activeModel.set(row.original);
-		lastClickedRowId = row.id;
+		if (row.id === lastClickedRowId) {
+			resetActiveModel();
+			lastClickedRowId = null;
+		} else {
+			activeModel.set(row.original);
+			lastClickedRowId = row.id;
+		}
 	};
 
 	const columns = table.createColumns([
@@ -163,7 +168,7 @@
 						<Table.Row
 							{...rowAttrs}
 							class={lastClickedRowId === row.id
-								? 'bg-green-500 text-black pointer-events-none'
+								? 'bg-green-500 text-black hover:bg-green-600'
 								: ''}
 							on:click={() => handleRowClick(row)}
 						>
