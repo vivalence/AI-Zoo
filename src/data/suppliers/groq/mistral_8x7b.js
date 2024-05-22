@@ -12,7 +12,8 @@ const mixtral8x7B = {
 	cost: {
 		currency: 'USD',
 		per_million_tokens_input: 0.27,
-		per_million_tokens_output: 0.27
+		per_million_tokens_output: 0.27,
+		per_million_tokens_blend_3_1: 0
 	},
 	speed: {
 		tokens_per_second: 471.6,
@@ -28,4 +29,4 @@ mixtral8x7B.cost['per_million_tokens_blend_3_1'] =
 		mixtral8x7B.cost['per_million_tokens_output']) /
 	4;
 
-export default () => mixtral8x7B;
+	export default async () => mixtral8x7B;

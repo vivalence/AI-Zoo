@@ -12,7 +12,8 @@ const gemma7B = {
 	cost: {
 		currency: 'USD',
 		per_million_tokens_input: 0.1,
-		per_million_tokens_output: 0.1
+		per_million_tokens_output: 0.1,
+		per_million_tokens_blend_3_1: 0
 	},
 	speed: {
 		tokens_per_second: 825.4,
@@ -26,4 +27,4 @@ const gemma7B = {
 gemma7B.cost['per_million_tokens_blend_3_1'] =
 	(gemma7B.cost['per_million_tokens_input'] * 3 + gemma7B.cost['per_million_tokens_output']) / 4;
 
-export default () => gemma7B;
+	export default async () => gemma7B;

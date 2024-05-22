@@ -1,45 +1,42 @@
 <script lang="ts">
 	import Chart from 'chart.js/auto';
+	import type { ChartData, ChartDataset } from 'chart.js';
 	import { Bar, Scatter } from 'svelte-chartjs';
-	import { selectedIds } from '$lib/stores/datatable';
 	import { optionsBar, optionsScatter } from './chartOptions';
+	import { suppliers, selectedModels } from '../../store';
 
-	import { suppliers } from '$data/suppliers/getAllObjects';
+	let activeChart: 'bar' | 'scatter' = 'bar';
+	let chartTypes: ('bar' | 'scatter')[] = ['bar', 'scatter'];
 
-	let activeChart = 'bar';
-	let chartTypes = ['bar', 'scatter'];
+	let dataBar: ChartData<'bar'> = {
+    labels: [] as string[],
+    datasets: [] as ChartDataset<'bar'>[]
+  };
 
-	let dataBar = {
-		labels: [] as any[],
-		datasets: [] as any[]
-	};
-	let dataScatter = {
-		datasets: [] as any[]
-	};
+  let dataScatter: ChartData<'scatter'> = {
+    datasets: [] as ChartDataset<'scatter'>[]
+  };
 
-	selectedIds.subscribe((value) => {
+	selectedModels.subscribe((value) => {
 		const selectedIds = value;
-		const filteredData = suppliers.filter((model) => selectedIds.includes(model.id));
+		const filteredData = $suppliers.filter((model) => selectedIds.includes(model.id));
 
-		const dataToSort = filteredData.length === 0 ? suppliers : filteredData;
-
-		console.log(dataToSort)
+		const dataToSort = filteredData.length === 0 ? $suppliers : filteredData;
 
 		const sortedData = [...dataToSort].sort(
 			(a, b) =>
-				parseFloat(a.cost.per_million_tokens_blend_3_1) -
-				parseFloat(b.cost.per_million_tokens_blend_3_1)
+				a.cost.per_million_tokens_blend_3_1 -
+				b.cost.per_million_tokens_blend_3_1
 		);
 		const labels = sortedData.map((model) => model.name);
 		const dataDummy = sortedData.map((model) =>
-			parseFloat(model.cost.per_million_tokens_blend_3_1)
+			model.cost.per_million_tokens_blend_3_1
 		);
 
 		dataBar = {
 			labels: labels,
 			datasets: [
 				{
-					axis: 'y' as const,
 					data: dataDummy,
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)',
@@ -66,11 +63,11 @@
 
 		dataScatter = {
 			datasets: sortedData.map((model) => ({
-				label: model.model,
+				label: model.name,
 				data: [
 					{
-						x: parseFloat(model.speed.tokens_per_second),
-						y: parseFloat(model.cost.per_million_tokens_blend_3_1)
+						x: model.speed.tokens_per_second,
+						y: model.cost.per_million_tokens_blend_3_1
 					}
 				],
 				backgroundColor: 'rgb(255, 99, 132)',
@@ -80,7 +77,7 @@
 		};
 	});
 
-	function toggleChart(chartType: string) {
+	function toggleChart(chartType: 'bar' | 'scatter') {
 		activeChart = chartType;
 	}
 </script>
@@ -98,7 +95,7 @@
 					{#if chartType === 'bar'}
 						Price per Token
 					{:else}
-					  Price * Tokens per Second
+						Price * Tokens per Second
 					{/if}
 				</button>
 			{/each}

@@ -13,7 +13,8 @@ const claude3Opus = {
 	cost: {
 		currency: 'USD',
 		per_million_tokens_input: 15.0,
-		per_million_tokens_output: 75.0
+		per_million_tokens_output: 75.0,
+		per_million_tokens_blend_3_1: 0
 	},
 	speed: {
 		tokens_per_second: 26.6,
@@ -29,4 +30,4 @@ claude3Opus.cost['per_million_tokens_blend_3_1'] =
 		claude3Opus.cost['per_million_tokens_output']) /
 	4;
 
-export default () => claude3Opus;
+	export default async () => claude3Opus;

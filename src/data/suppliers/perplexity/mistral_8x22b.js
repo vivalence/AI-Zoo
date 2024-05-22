@@ -10,7 +10,8 @@ const mistral8x22B_perplexity = {
 	cost: {
 		currency: 'USD',
 		per_million_tokens_input: 1.0,
-		per_million_tokens_output: 1.0
+		per_million_tokens_output: 1.0,
+		per_million_tokens_blend_3_1: 0
 	},
 	speed: {
 		tokens_per_second: 62.3,
@@ -26,4 +27,4 @@ mistral8x22B_perplexity.cost['per_million_tokens_blend_3_1'] =
 		mistral8x22B_perplexity.cost['per_million_tokens_output']) /
 	4;
 
-export default () => mistral8x22B_perplexity;
+	export default async () => mistral8x22B_perplexity;

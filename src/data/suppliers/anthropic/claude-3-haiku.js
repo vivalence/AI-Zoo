@@ -13,7 +13,8 @@ const claude3Haiku = {
 	cost: {
 		currency: 'USD',
 		per_million_tokens_input: 0.25,
-		per_million_tokens_output: 1.25
+		per_million_tokens_output: 1.25,
+		per_million_tokens_blend_3_1: 0
 	},
 	speed: {
 		tokens_per_second: 89.1,
@@ -29,4 +30,4 @@ claude3Haiku.cost['per_million_tokens_blend_3_1'] =
 		claude3Haiku.cost['per_million_tokens_output']) /
 	4;
 
-export default () => claude3Haiku;
+	export default async () => claude3Haiku;

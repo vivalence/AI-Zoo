@@ -1,6 +1,8 @@
 export const optionsBar = {
 	maintainAspectRatio: false,
 	indexAxis: 'x' as const,
+	axis: 'y' as const,
+
 	plugins: {
 		legend: {
 			display: false

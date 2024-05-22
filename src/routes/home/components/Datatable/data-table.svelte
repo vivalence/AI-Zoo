@@ -1,11 +1,6 @@
 <script lang="ts">
 	import { createTable, Render, Subscribe, createRender } from 'svelte-headless-table';
-	import {
-		addPagination,
-		addSortBy,
-		addHiddenColumns,
-		addSelectedRows
-	} from 'svelte-headless-table/plugins';
+	import { addPagination, addSortBy, addSelectedRows } from 'svelte-headless-table/plugins';
 	import * as Table from '$lib/components/ui/table';
 	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
 	import { readable } from 'svelte/store';
@@ -13,21 +8,20 @@
 	import DataTableActions from './data-table-actions.svelte';
 	import DataTableCheckbox from './data-table-checkbox.svelte';
 
-	import { selectedIds, selectedRow } from '$lib/stores/datatable';
-	import { suppliers } from '$data/suppliers/getAllObjects';
+	import { selectedModels, activeModel } from '../../store';
+	import { suppliers } from '../../store';
 
+	let lastClickedRowId: string | null = null;
 
-	const table = createTable(readable(suppliers), {
+	const table = createTable(readable($suppliers), {
 		page: addPagination(),
 		sort: addSortBy(),
 		select: addSelectedRows()
 	});
 
-	let selectedRowId: string | undefined;
-
 	const handleRowClick = (row: any) => {
-		selectedRow.set(row);
-		selectedRowId = row.id
+		activeModel.set(row.original);
+		lastClickedRowId = row.id;
 	};
 
 	const columns = table.createColumns([
@@ -110,7 +104,7 @@
 			accessor: (row) => row.supplier.docs,
 			header: 'Link to Source',
 			cell: ({ value }) => {
-				return createRender(DataTableActions, { url: value });
+				return createRender(DataTableActions, { url: value || '' });
 			}
 		})
 	]);
@@ -122,7 +116,7 @@
 
 	const { selectedDataIds } = pluginStates.select;
 
-	let selectedId: (string | undefined)[];
+	let selectedId: any;
 
 	$: {
 		// The lib returns the id by the index of the row in the table, this is why we need to convert it to the real id
@@ -134,7 +128,7 @@
 				return row.original.id;
 			});
 
-		selectedIds.set(selectedId);
+		selectedModels.set(selectedId);
 	}
 </script>
 
@@ -151,7 +145,7 @@
 										{#if cell.id === 'model'}
 											<Button variant="ghost" on:click={props.sort.toggle}>
 												<Render of={cell.render()} />
-											<ArrowUpDown class={'ml-2 h-4 w-4'} />
+												<ArrowUpDown class={'ml-2 h-4 w-4'} />
 											</Button>
 										{:else}
 											<Render of={cell.render()} />
@@ -165,19 +159,25 @@
 			</Table.Header>
 			<Table.Body {...$tableBodyAttrs}>
 				{#each $pageRows as row (row.id)}
-						<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-								<Table.Row {...rowAttrs} on:click={() => handleRowClick(row.original)}>
-												{#each row.cells as cell (cell.id)}
-														<Subscribe attrs={cell.attrs()} let:attrs>
-																<Table.Cell {...attrs}>
-																		<Render of={cell.render()} />
-																</Table.Cell>
-														</Subscribe>
-												{/each}
-								</Table.Row>
-						</Subscribe>
+					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+						<Table.Row
+							{...rowAttrs}
+							class={lastClickedRowId === row.id
+								? 'bg-green-500 text-black pointer-events-none'
+								: ''}
+							on:click={() => handleRowClick(row)}
+						>
+							{#each row.cells as cell (cell.id)}
+								<Subscribe attrs={cell.attrs()} let:attrs>
+									<Table.Cell {...attrs}>
+										<Render of={cell.render()} />
+									</Table.Cell>
+								</Subscribe>
+							{/each}
+						</Table.Row>
+					</Subscribe>
 				{/each}
-		</Table.Body>
+			</Table.Body>
 		</Table.Root>
 	</div>
 	<div class="flex items-center justify-end space-x-4 py-4">
@@ -195,4 +195,3 @@
 		>
 	</div>
 </div>
-

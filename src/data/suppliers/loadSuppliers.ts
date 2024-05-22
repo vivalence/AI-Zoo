@@ -23,25 +23,30 @@ import llama3_70B_perplexity from '$data/suppliers/perplexity/llama_3_70b';
 import mistral8x7B_perplexity from '$data/suppliers/perplexity/mistral_8x7b';
 import mistral8x22B_perplexity from '$data/suppliers/perplexity/mistral_8x22b';
 
-const getAllObjects = () => {
-		return ([
-			claude3Sonnet(),
-			claude3Opus(),
-			claude3Haiku(),
-			gemma7B(),
-			llama3_8B(),
-			llama3_70B(),
-			mixtral8x7B(),
-			llama3_8B_perplexity(),
-			llama3_70B_perplexity(),
-			mistral8x7B(),
-			mistral8x22B(),
-			mistral8x7B_perplexity(),
-			mistral8x22B_perplexity(),
-			gpt35Turbo(),
-			gpt4Turbo()
-		]);
-	}
+import type { Supplier } from '$lib/types';
 
+const loadSuppliers = async (): Promise<Supplier[]> => {
+	const allSuppliersPromises = [
+					claude3Sonnet(),
+					claude3Opus(),
+					claude3Haiku(),
+					gemma7B(),
+					llama3_8B(),
+					llama3_70B(),
+					mixtral8x7B(),
+					llama3_8B_perplexity(),
+					llama3_70B_perplexity(),
+					mistral8x7B(),
+					mistral8x22B(),
+					mistral8x7B_perplexity(),
+					mistral8x22B_perplexity(),
+					gpt35Turbo(),
+					gpt4Turbo()
+	];
 
-	export const suppliers = getAllObjects()
+	const allSuppliers = await Promise.all(allSuppliersPromises);
+
+	return allSuppliers;
+};
+
+export default loadSuppliers;

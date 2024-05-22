@@ -11,7 +11,8 @@ const gpt4Turbo = {
 	cost: {
 		currency: 'USD',
 		per_million_tokens_input: 10.0,
-		per_million_tokens_output: 30.0
+		per_million_tokens_output: 30.0,
+		per_million_tokens_blend_3_1: 0
 	},
 	speed: {
 		tokens_per_second: 24.4,
@@ -25,5 +26,4 @@ const gpt4Turbo = {
 gpt4Turbo.cost['per_million_tokens_blend_3_1'] =
 	(gpt4Turbo.cost['per_million_tokens_input'] * 3 + gpt4Turbo.cost['per_million_tokens_output']) /
 	4;
-
-export default () => gpt4Turbo;
+	export default async () => gpt4Turbo;

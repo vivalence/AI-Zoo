@@ -38,6 +38,7 @@
 	"type": "module",
 	"dependencies": {
 		"@faker-js/faker": "^8.4.1",
+		"@types/chart.js": "^2.9.41",
 		"bits-ui": "^0.20.1",
 		"chart.js": "^4.4.2",
 		"clsx": "^2.1.0",

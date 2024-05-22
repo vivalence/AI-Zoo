@@ -11,7 +11,9 @@ const gpt35Turbo = {
 	cost: {
 		currency: 'USD',
 		per_million_tokens_input: 0.5,
-		per_million_tokens_output: 1.5
+		per_million_tokens_output: 1.5,
+		per_million_tokens_blend_3_1: 0
+
 	},
 	speed: {
 		tokens_per_second: 71.4,
@@ -26,4 +28,4 @@ gpt35Turbo.cost['per_million_tokens_blend_3_1'] =
 	(gpt35Turbo.cost['per_million_tokens_input'] * 3 + gpt35Turbo.cost['per_million_tokens_output']) /
 	4;
 
-export default () => gpt35Turbo;
+	export default async () => gpt35Turbo;

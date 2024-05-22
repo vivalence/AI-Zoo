@@ -1,7 +1,8 @@
 <script>
-	import Chart from '$lib/components/Chart/Chart.svelte';
-	import PriceCalculator from '$lib/components/PriceCalculator.svelte';
-	import DataTable from '$lib/components/Datatable/data-table.svelte';
+	import Chart from './components/Chart/Chart.svelte';
+	import PriceCalculator from './components/PriceCalculator.svelte';
+	import DataTable from './components/Datatable/data-table.svelte';
+
 </script>
 
 <svelte:head>
@@ -18,14 +19,13 @@
 		</p>
 	</div>
 
-	<!-- <hr class="mb-12" /> -->
 
 	<div class="w-full">
 		<h1 class="scroll-m-20 text-xl font-bold tracking-tight lg:text-2xl">Suppliers and Pricing:</h1>
 	</div>
 	<div class="flex flex-col md:flex-row justify-center items-center mb-12 gap-x-8">
 		<div class="w-full md:w-1/2">
-			<PriceCalculator />
+			<PriceCalculator/>
 		</div>
 
 		<div class="w-full md:w-1/2">

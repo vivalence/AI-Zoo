@@ -13,7 +13,8 @@ const claude3Sonnet = {
 	cost: {
 		currency: 'USD',
 		per_million_tokens_input: 3.0,
-		per_million_tokens_output: 15.0
+		per_million_tokens_output: 15.0,
+		per_million_tokens_blend_3_1: 0
 	},
 	speed: {
 		tokens_per_second: 58.8,
@@ -29,4 +30,4 @@ claude3Sonnet.cost['per_million_tokens_blend_3_1'] =
 		claude3Sonnet.cost['per_million_tokens_output']) /
 	4;
 
-export default () => claude3Sonnet;
+export default async () => claude3Sonnet;

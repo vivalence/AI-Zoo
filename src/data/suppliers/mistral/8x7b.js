@@ -12,7 +12,8 @@ const mistral8x7B = {
 	cost: {
 		currency: 'USD',
 		per_million_tokens_input: 0.7,
-		per_million_tokens_output: 0.7
+		per_million_tokens_output: 0.7,
+		per_million_tokens_blend_3_1: 0
 	},
 	speed: {
 		tokens_per_second: 45.3,
@@ -28,4 +29,4 @@ mistral8x7B.cost['per_million_tokens_blend_3_1'] =
 		mistral8x7B.cost['per_million_tokens_output']) /
 	4;
 
-export default () => mistral8x7B;
+	export default async () => mistral8x7B;
