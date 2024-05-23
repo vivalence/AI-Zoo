@@ -2,8 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: 'main'
 
 jobs:
   build_site:
