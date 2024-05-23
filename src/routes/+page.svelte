@@ -1,7 +1,7 @@
 <script>
-	import Chart from './components/Chart/Chart.svelte';
-	import PriceCalculator from './components/PriceCalculator.svelte';
-	import DataTable from './components/Datatable/data-table.svelte';
+	import Chart from './home/components/Chart/Chart.svelte';
+	import PriceCalculator from './home/components/PriceCalculator.svelte';
+	import DataTable from './home/components/Datatable/data-table.svelte';
 
 </script>
 
