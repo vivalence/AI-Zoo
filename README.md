@@ -75,3 +75,14 @@ To contribute, fork this repository, make your changes, and submit a pull reques
 - Adhere to coding and UI design standards of the project.
 - Use meaningful commit messages and provide detailed PR descriptions.
 
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
