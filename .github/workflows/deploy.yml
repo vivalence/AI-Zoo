@@ -1,9 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
-  tag:
-    tags:
-      - v*
+  tags:
+    - v*
 
 jobs:
   build_site:
