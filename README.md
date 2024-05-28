@@ -59,6 +59,7 @@ LLM & AI Model Compare is a contributor-driven platform for comparing language m
 
 3. **Charting**:
    - Utilize the charting library integrated into the project to add visual data representations. Enhancements to existing charts or new chart implementations are encouraged.
+   - You can learn how to do this by following our [guide](/CHARTS.md).
 
 ### Building and Deployment
 
