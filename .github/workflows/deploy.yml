@@ -45,6 +45,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Deploy
+      - name: Deploy to ghpages
         id: deployment
         uses: actions/deploy-pages@v4
